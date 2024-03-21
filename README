@@ -1,0 +1,9 @@
+cd producer
+fly deploy
+cd ../consumer
+fly deploy
+cd ..
+# to trigger producer to produce 5 rows
+curl -X POST https://astro-latency-test-producer.fly.dev/produce/5
+# to trigger consumer to sync
+curl -X POST https://astro-latency-test-consumer.fly.dev/sync/

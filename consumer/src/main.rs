@@ -35,6 +35,10 @@ async fn handler(db: Arc<Database>) -> Result<String, warp::Rejection> {
 
 #[tokio::main]
 async fn main() {
+    tracing_subscriber::fmt()
+        .with_env_filter(tracing_subscriber::EnvFilter::from_default_env())
+        .init();
+    tracing::info!("Start");
     let url = env::var("LIBSQL_URL").expect("LIBSQL_URL must be set");
     let token = env::var("LIBSQL_AUTH_TOKEN").unwrap_or_default();
 
